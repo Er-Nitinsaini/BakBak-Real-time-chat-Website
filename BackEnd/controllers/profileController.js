@@ -15,7 +15,7 @@ exports.updateProfile = async (req, res) => {
     if (phoneNumber) profile.phoneNumber = phoneNumber;
 
     if (req.file) {
-      profile.profileImage = `http://localhost:8000/uploads/${req.file.filename}`;
+      profile.profileImage = `https://bakbak.onrender.com/uploads/${req.file.filename}`;
     }
 
     await profile.save();
