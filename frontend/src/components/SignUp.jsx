@@ -46,7 +46,7 @@ export default function Signup() {
 
     try {
       const response = await fetch(
-        `http://localhost:8000/signup/check-username?q=${username}`
+        `https://bakbak.onrender.com/signup/check-username?q=${username}`
       );
       if (response.ok) {
         const data = await response.json();
@@ -79,7 +79,7 @@ export default function Signup() {
     }
 
     try {
-      const response = await fetch("http://localhost:8000/signup", {
+      const response = await fetch("https://bakbak.onrender.com/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ Username: username, email, password }),
@@ -101,7 +101,7 @@ export default function Signup() {
 
   const handleSendOTP = async () => {
     try {
-      const response = await fetch("http://localhost:8000/otp/api/send-otp", {
+      const response = await fetch("https://bakbak.onrender.com/otp/api/send-otp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
@@ -132,7 +132,7 @@ export default function Signup() {
 
   const handleVerifyOTP = async () => {
     try {
-      const response = await fetch("http://localhost:8000/otp/api/verify-otp", {
+      const response = await fetch("https://bakbak.onrender.com/otp/api/verify-otp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ otp: otp.join(""), token: otpToken }),

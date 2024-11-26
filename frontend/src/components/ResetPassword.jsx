@@ -17,7 +17,7 @@ const PasswordReset = () => {
     setLoading(true); // Start loader
     
     try {
-      const response = await fetch('http://localhost:8000/re-set/forgetpassword-otp', {
+      const response = await fetch('https://bakbak.onrender.com/re-set/forgetpassword-otp', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ const PasswordReset = () => {
   const handleVerifyOtp = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:8000/re-set/verifypassword-otp', {
+      const response = await fetch('https://bakbak.onrender.com/re-set/verifypassword-otp', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ const PasswordReset = () => {
   const handleResetPassword = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:8000/re-set/reset-password', {
+      const response = await fetch('https://bakbak.onrender.com/re-set/reset-password', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

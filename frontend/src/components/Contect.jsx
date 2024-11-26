@@ -16,8 +16,8 @@ export default function UserConnections({ currentUserId }) {
       setError(null);
       try {
         const [addedResponse, followersResponse] = await Promise.all([
-          fetch(`http://localhost:8000/api/users/${currentUserId}`),
-          fetch(`http://localhost:8000/api/users/${currentUserId}/followers`),
+          fetch(`https://bakbak.onrender.com/api/users/${currentUserId}`),
+          fetch(`https://bakbak.onrender.com/api/users/${currentUserId}/followers`),
         ]);
 
         const addedData = await addedResponse.json();

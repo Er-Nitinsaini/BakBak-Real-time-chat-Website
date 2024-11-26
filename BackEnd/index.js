@@ -26,7 +26,7 @@ const app = express();
 const port = process.env.PORT || 8000;
 
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: 'https://bak-bak-sigma.vercel.app',
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD"],
   credentials: true,
 };
@@ -54,7 +54,7 @@ app.use('/api/userss', authenticateToken); // Protect user-related routes
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "https://bak-bak-sigma.vercel.app",
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
     credentials: true,

@@ -27,7 +27,7 @@ export default function Profile() {
 
     try {
       const response = await fetch(
-        "http://localhost:8000/api/profile/upload-photo",
+        "https://bakbak.onrender.com/api/profile/upload-photo",
         {
           method: "POST",
           body: formData,
@@ -56,7 +56,7 @@ export default function Profile() {
           const userId = payload.userId;
 
           const response = await fetch(
-            `http://localhost:8000/api/profile/profile/${userId}`
+            `https://bakbak.onrender.com/api/profile/profile/${userId}`
           );
           if (!response.ok) {
             throw new Error("Failed to fetch user data");
@@ -86,7 +86,7 @@ export default function Profile() {
       const userId = payload.userId;
 
       const response = await fetch(
-        `http://localhost:8000/api/profile/upload-photo`,
+        `https://bakbak.onrender.com/api/profile/upload-photo`,
         {
           method: "POST", // Ensure you're using PUT for updating
           headers: {
@@ -104,7 +104,7 @@ export default function Profile() {
       const responseData = await response.json();
 
       // Log the response data to check if it returns the updated profile
-      console.log("Profile update response:", responseData);
+      //console.log("Profile update response:", responseData);
 
       // Update frontend state after successful update
       if (responseData.profile) {
@@ -139,7 +139,7 @@ export default function Profile() {
 
           // Fetch user data from your API
           const response = await fetch(
-            `http://localhost:8000/api/username/${userId}`
+            `https://bakbak.onrender.com/api/username/${userId}`
           ); // Adjust URL if necessary
           if (!response.ok) {
             throw new Error("Failed to fetch user data");

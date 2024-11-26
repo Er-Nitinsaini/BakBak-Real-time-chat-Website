@@ -4,7 +4,7 @@ import io from "socket.io-client";
 import { useNavigate } from "react-router-dom";
 
 
-const socket = io("http://localhost:8000");
+const socket = io("https://bakbak.onrender.com");
 
 export default function UserSearch({ onUserSelect, currentUserId }) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -60,7 +60,7 @@ export default function UserSearch({ onUserSelect, currentUserId }) {
 
       try {
         const response = await fetch(
-          `http://localhost:8000/api/users/${currentUserId}`
+          `https://bakbak.onrender.com/api/users/${currentUserId}`
         );
         const users = await response.json();
         setAddedUsers(Array.isArray(users) ? users : []);
@@ -80,7 +80,7 @@ export default function UserSearch({ onUserSelect, currentUserId }) {
       }
       try {
         const response = await fetch(
-          `http://localhost:8000/api/users/search?q=${searchTerm}`
+          `https://bakbak.onrender.com/api/users/search?q=${searchTerm}`
         );
         const users = await response.json();
         const filtered = users.filter((user) => user._id !== currentUserId);
@@ -104,7 +104,7 @@ export default function UserSearch({ onUserSelect, currentUserId }) {
     ) {
       try {
         const response = await fetch(
-          `http://localhost:8000/api/users/users/${currentUserId}/add/${user._id}`,
+          `https://bakbak.onrender.com/api/users/users/${currentUserId}/add/${user._id}`,
           { method: "POST" }
         );
         const updatedUsers = await response.json();
@@ -118,7 +118,7 @@ export default function UserSearch({ onUserSelect, currentUserId }) {
   const handleRemoveUser = async (userId) => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/users/${currentUserId}/remove/${userId}`,
+        `https://bakbak.onrender.com/api/users/${currentUserId}/remove/${userId}`,
         {
           method: "DELETE",
         }

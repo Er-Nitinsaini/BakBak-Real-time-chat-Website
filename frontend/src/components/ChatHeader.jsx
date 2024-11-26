@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Phone, Video, MoreHorizontal, Menu, X } from "lucide-react";
 import io from "socket.io-client";
 
-const socket = io("http://localhost:8000");
+const socket = io("https://bakbak.onrender.com");
 
 export default function ChatHeader({ selectedUser, toggleSidebar, token }) {
   const [username, setUsername] = useState("User");
@@ -16,7 +16,7 @@ export default function ChatHeader({ selectedUser, toggleSidebar, token }) {
     const userId = getUserIdFromToken(token);
     try {
       const response = await fetch(
-        `http://localhost:8000/api/profile/profile/${userId}`
+        `https://bakbak.onrender.com/api/profile/profile/${userId}`
       );
       if (!response.ok) {
         setProfileImage(""); // Set profile image
@@ -36,7 +36,7 @@ export default function ChatHeader({ selectedUser, toggleSidebar, token }) {
         const userId = selectedUser._id;
 
         const response = await fetch(
-          `http://localhost:8000/api/profile/profile/${userId}`
+          `https://bakbak.onrender.com/api/profile/profile/${userId}`
         );
         if (!response.ok) {
           setProfileImage(""); // Set profile image
@@ -71,7 +71,7 @@ export default function ChatHeader({ selectedUser, toggleSidebar, token }) {
     if (userId) {
       try {
         const response = await fetch(
-          `http://localhost:8000/api/username/${userId}`
+          `https://bakbak.onrender.com/api/username/${userId}`
         );
 
         if (!response.ok) throw new Error("Failed to fetch user data");

@@ -10,7 +10,7 @@ import Setting from "./Setting";
 
 import axios from "axios";
 
-const socket = io("http://localhost:8000");
+const socket = io("https://bakbak.onrender.com");
 
 export default function Component() {
   const [message, setMessage] = useState("");
@@ -81,7 +81,7 @@ export default function Component() {
       try {
         // Send message to backend
         await axios.post(
-          "http://localhost:8000/api/conversations/message",
+          "https://bakbak.onrender.com/api/conversations/message",
           newMessage
         );
 
@@ -114,7 +114,7 @@ export default function Component() {
     const fetchOrCreateConversation = async () => {
       try {
         const response = await axios.post(
-          "http://localhost:8000/api/conversations/conversations/findOrCreate",
+          "https://bakbak.onrender.com/api/conversations/conversations/findOrCreate",
           {
             userId1: currentUserId,
             userId2: selectedUser._id,
@@ -142,7 +142,7 @@ export default function Component() {
     //console.log("Fetching messages for conversation ID:", conversationId);
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/conversations/${conversationId}/messages`,
+        `https://bakbak.onrender.com/api/conversations/${conversationId}/messages`,
         { params: { page, limit } }
       );
 
