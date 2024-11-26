@@ -64,7 +64,7 @@ exports.getAddedUsers = async (req, res) => {
 exports.deleteUser = async (req, res) => {
   const { currentUserId, userId } = req.params;
 
-  console.log(`Attempting to remove user ${userId} from ${currentUserId}'s added users`);
+  //console.log(`Attempting to remove user ${userId} from ${currentUserId}'s added users`);
 
   if (!mongoose.Types.ObjectId.isValid(currentUserId) || !mongoose.Types.ObjectId.isValid(userId)) {
     console.log('Invalid ObjectId:', { currentUserId, userId });
