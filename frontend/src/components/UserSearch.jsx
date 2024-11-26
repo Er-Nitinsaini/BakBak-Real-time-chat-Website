@@ -32,7 +32,7 @@ export default function UserSearch({ onUserSelect, currentUserId }) {
   useEffect(() => {
     // Listen for online users from the backend
     socket.on("online_users", (onlineUsers) => {
-      console.log("Received online users:", onlineUsers);
+      //console.log("Received online users:", onlineUsers);
 
       // Update `isOnline` status for added users
       setAddedUsers((prevUsers) =>

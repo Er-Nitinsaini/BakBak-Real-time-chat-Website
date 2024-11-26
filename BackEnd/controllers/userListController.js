@@ -79,10 +79,10 @@ exports.deleteUser = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    console.log('Current user addedUsers before deletion:', currentUser.addedUsers);
+   // console.log('Current user addedUsers before deletion:', currentUser.addedUsers);
 
     if (!Array.isArray(currentUser.addedUsers)) {
-      console.log('addedUsers is not an array:', currentUser.addedUsers);
+      //console.log('addedUsers is not an array:', currentUser.addedUsers);
       return res.status(500).json({ message: "Internal error: addedUsers is not an array" });
     }
 
@@ -92,7 +92,7 @@ exports.deleteUser = async (req, res) => {
     );
 
     if (currentUser.addedUsers.length === initialLength) {
-      console.log(`User ${userId} not found in addedUsers`);
+      //console.log(`User ${userId} not found in addedUsers`);
       return res.status(404).json({ message: "User to delete not found in the list" });
     }
 
