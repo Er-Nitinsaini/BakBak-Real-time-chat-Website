@@ -32,13 +32,14 @@ export default function ChatHeader({ selectedUser, toggleSidebar, token }) {
 
   useEffect(() => {
     if (!selectedUser) {
-      return; 
+      console.warn("No selected user. Skipping user data fetch.");
+      return; // Exit early if no selected user
     }
     const fetchUserData = async () => {
       try {
 
         const response = await fetch(
-          `https://bakbak.onrender.com/api/profile/profile/${selectedUser._id}`
+          `https://bakbak.onrender.com/api/profile/profile/${selectedUser?._id}`
         );
         if (!response.ok) {
           setProfileImage(""); // Set profile image
