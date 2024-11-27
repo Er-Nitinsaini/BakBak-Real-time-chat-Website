@@ -50,7 +50,7 @@ export default function UserSearch({ onUserSelect, currentUserId }) {
       }
     }, 50000);
 
-    // Cleanup event listener on component unmount
+    // Cleanup event listener on component unmountgit commit -m "Switch from bcrypt to bcryptjs"
     return () => socket.off("online_users");
   }, [currentUserId]);
 
