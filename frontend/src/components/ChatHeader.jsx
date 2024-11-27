@@ -31,12 +31,14 @@ export default function ChatHeader({ selectedUser, toggleSidebar, token }) {
   };
 
   useEffect(() => {
+    if (!selectedUser) {
+      return; 
+    }
     const fetchUserData = async () => {
       try {
-        const userId = selectedUser._id;
 
         const response = await fetch(
-          `https://bakbak.onrender.com/api/profile/profile/${userId}`
+          `https://bakbak.onrender.com/api/profile/profile/${selectedUser._id}`
         );
         if (!response.ok) {
           setProfileImage(""); // Set profile image
