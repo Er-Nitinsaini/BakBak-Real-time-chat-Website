@@ -27,7 +27,7 @@ export default function Profile() {
 
     try {
       const response = await fetch(
-        "https://bakbak.onrender.com/api/profile/upload-photo",
+        "https://bakbak.onrender.com/api/profile/update-profile",
         {
           method: "POST",
           body: formData,
