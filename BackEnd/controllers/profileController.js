@@ -1,28 +1,35 @@
 const Profile = require('../models/Profile');
 
-// Controller to handle image upload
+// Update Profile Controller
 exports.updateProfile = async (req, res) => {
   const { userId, name, about, phoneNumber } = req.body;
 
   try {
+    // Validate input
+    if (!userId) {
+      return res.status(400).json({ message: "User ID is required" });
+    }
+
     let profile = await Profile.findOne({ user: userId });
     if (!profile) {
       profile = new Profile({ user: userId });
     }
 
+    // Update fields
     if (name) profile.name = name;
     if (about) profile.about = about;
     if (phoneNumber) profile.phoneNumber = phoneNumber;
 
+    // Update profile image if uploaded
     if (req.file) {
-      profile.profileImage = `https://bakbak.onrender.com/uploads/${req.file.filename}`;
+      profile.profileImage = req.file.path; // URL from Cloudinary
     }
 
     await profile.save();
-    res.status(200).json({ message: 'Profile updated successfully', profile });
+    res.status(200).json({ message: "Profile updated successfully", profile });
   } catch (error) {
-    console.error('Error updating profile:', error);
-    res.status(500).json({ message: 'Server error' });
+    console.error("Error updating profile:", error);
+    res.status(500).json({ message: "Server error" });
   }
 };
 
