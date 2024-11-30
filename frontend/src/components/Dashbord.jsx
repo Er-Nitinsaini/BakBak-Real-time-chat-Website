@@ -433,8 +433,8 @@ export default function Component() {
                 {selectedMessageId === msg._id &&
                   msg.senderId === currentUserId && (
                     <div
-                      className="relative top-0 right-0 bg-gray-100 p-2 shadow-lg rounded-full"
-                      style={{ marginTop: "5px", marginRight: "5px" }} // Adjust position as needed
+                      className="relative top-0 right-0 bg-red-600 p-2 shadow-lg rounded-full"
+                      style={{ marginTop: "5px", marginRight: "5px", marginLeft: '5px' }} // Adjust position as needed
                     >
                       <button
                         onClick={(e) => {
@@ -444,7 +444,7 @@ export default function Component() {
                         }}
                         className="text-red-500 text-xs"
                       >
-                        <Trash className="font-extrabold" />
+                        <Trash className="font-extrabold text-white mt-1" />
                       </button>
                     </div>
                   )}
