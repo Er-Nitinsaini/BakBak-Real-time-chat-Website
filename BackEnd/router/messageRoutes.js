@@ -10,4 +10,6 @@ router.get('/:conversationId/messages', conversationController.getMessages);
 
 router.post("/conversations/findOrCreate",conversationController.conversationID);
 
+router.delete('/:conversationId/messages/:messageId',conversationController.massageDelete);
+
 module.exports = router;

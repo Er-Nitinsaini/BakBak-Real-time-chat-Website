@@ -67,9 +67,34 @@ const conversationID = async (req, res) => {
   }
 };
 
+const massageDelete = async (req, res) => {
+  const { conversationId, messageId } = req.params;
+
+  try {
+    const conversation = await Conversation.findByIdAndUpdate(
+      conversationId,
+      { $pull: { messages: { _id: messageId } } }, // Remove the message with the specified ID
+      { new: true } // Return the updated conversation
+    );
+
+    if (!conversation) {
+      return res.status(404).json({ error: 'Conversation not found.' });
+    }
+
+    res.status(200).json({
+      message: 'Message deleted successfully.',
+      updatedConversation: conversation,
+    });
+  } catch (error) {
+    console.error('Error deleting message:', error);
+    res.status(500).json({ error: 'Failed to delete the message.' });
+  }
+};
+
 
 module.exports = {
   addMessage,
   getMessages,
-  conversationID
+  conversationID,
+  massageDelete
 };

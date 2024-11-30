@@ -23,11 +23,10 @@ export default function Component() {
   const [selectedUser, setSelectedUser] = useState(null);
   const chatContainerRef = useRef(null);
   const [currentUserId, setCurrentUserId] = useState(null);
-
+  const [conversationId, setconversationId] = useState(null);
+  const [selectedMessageId, setSelectedMessageId] = useState(null);
   const [isAnimating, setIsAnimating] = useState(false); //animation
-
   const [token, settoken] = useState();
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -51,6 +50,14 @@ export default function Component() {
       setCurrentUserId(userId);
     }
   });
+
+  const handleMessageSelect = (msgId) => {
+    if (selectedMessageId === msgId) {
+      setSelectedMessageId(null); // Deselect if same message is clicked
+    } else {
+      setSelectedMessageId(msgId); // Select the new message
+    }
+  };
 
   ///nwewew
 
@@ -125,6 +132,7 @@ export default function Component() {
 
         if (conversation._id) {
           await fetchMessages(conversation._id);
+          setconversationId(conversation._id);
         } else {
           console.error("Conversation ID not found.");
         }
@@ -165,6 +173,31 @@ export default function Component() {
       }));
     } catch (error) {
       console.error("Error fetching messages:", error);
+    }
+  };
+
+  //handel Delete masage
+
+  const handleDeleteMessage = async (messageId) => {
+    console.log(
+      `Deleting message with ID ${messageId} in conversation ${conversationId}`
+    );
+    try {
+      // Send DELETE request to backend to remove the message
+      await axios.delete(
+        `https://bakbak.onrender.com/api/conversations/${conversationId}/messages/${messageId}`
+      );
+
+      // Remove the message from the state (optimistic update)
+      setMessages((prevMessages) => {
+        const updatedMessages = { ...prevMessages };
+        updatedMessages[selectedUser._id] = updatedMessages[
+          selectedUser._id
+        ].filter((msg) => msg._id !== messageId);
+        return updatedMessages;
+      });
+    } catch (error) {
+      console.error("Error deleting message:", error);
     }
   };
 
@@ -365,6 +398,7 @@ export default function Component() {
             (messages[selectedUser._id] || []).map((msg, index) => (
               <div
                 key={index}
+                onClick={() => handleMessageSelect(msg._id)}
                 className={`mb-4 flex ${
                   msg.senderId === currentUserId
                     ? "justify-end"
@@ -395,6 +429,25 @@ export default function Component() {
                     {/* {msg.timestamp.split(", ")[0]} */}
                   </span>
                 </div>
+                {/* Conditionally render delete pop-up */}
+                {selectedMessageId === msg._id &&
+                  msg.senderId === currentUserId && (
+                    <div
+                      className="relative top-0 right-0 bg-gray-100 p-2 shadow-lg rounded-full"
+                      style={{ marginTop: "5px", marginRight: "5px" }} // Adjust position as needed
+                    >
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation(); // Prevent triggering handleMessageSelect
+                          handleDeleteMessage(msg._id); // Call delete handler
+                          setSelectedMessageId(null); // Deselect after deletion
+                        }}
+                        className="text-red-500 text-xs"
+                      >
+                        <Trash className="font-extrabold" />
+                      </button>
+                    </div>
+                  )}
               </div>
             ))}
         </div>
