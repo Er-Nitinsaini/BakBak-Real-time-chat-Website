@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { User, Users, Settings, Shield, Send, X } from "lucide-react";
+import { User, Users, Settings, Shield, Send, X, Trash } from "lucide-react";
 import { io } from "socket.io-client";
 import { useNavigate } from "react-router-dom";
 import UserSearch from "./UserSearch";
