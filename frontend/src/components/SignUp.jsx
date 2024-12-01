@@ -164,7 +164,7 @@ export default function Signup() {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center bg-gray-100 bg-cover bg-center"
+      className="min-h-screen flex items-center justify-center flex-row bg-gray-100 bg-cover bg-center"
       style={{ backgroundImage: `url("k.jpg")` }}
     >
       {/* Floating elements for GSAP animation */}
@@ -351,6 +351,12 @@ export default function Signup() {
           </a>
         </p>
        
+      </div>
+      <div className="flex absolute bottom-0 bg-purple-500 w-full justify-center text-white"
+      >
+        <p className="text-[14px] mt-2 mb-2 ">
+          Devloped by  Nitin Saini with ❤️ ©️ BakBak 2024
+        </p>
       </div>
     </div>
   );
