@@ -109,9 +109,7 @@ export default function Login() {
             Forget password?
           </a>
         </p>
-        <p className="text-[9px] text-center pt-1">
-          Devloper:Nitin Saini BakBak@copywrite 2024
-        </p>
+       
       </div>
     </div>
   );
