@@ -1,2 +1,2 @@
 <h1>BakBak || Real time Chat Website</h1>
-![B](https://github.com/user-attachments/assets/3465bbdc-9bd3-4f5f-be08-3408b84a20ee)
+<img src="https://github.com/user-attachments/assets/b5453909-a4e1-4d59-a00d-a43bfb48c7ad"/>
