@@ -1,2 +1,3 @@
+<img src="https://github.com/user-attachments/assets/68dc74a1-02ae-4f3f-b590-969b2bdc97be />
 <h1>BakBak || Real time Chat Website</h1>
-<img src="https://github.com/user-attachments/assets/b5453909-a4e1-4d59-a00d-a43bfb48c7ad"/>
+
