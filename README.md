@@ -71,7 +71,7 @@ Make sure you have the following installed on your machine:
 **Cloning the Repository**
 
 ```bash
-git clone 
+git clone https://github.com/Er-Nitinsaini/BakBak-Real-time-chat-Website.git
 ```
 ```bash
 cd frontend 
