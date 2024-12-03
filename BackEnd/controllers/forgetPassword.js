@@ -197,7 +197,7 @@ function getHtmlContent(otp, userName) {
 														<tr>
 															<td class="pad">
 																<div style="color:#101112;direction:ltr;font-family:'Droid Serif', Georgia, Times, 'Times New Roman', serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:120%;text-align:left;mso-line-height-alt:19.2px;">
-																	<p style="margin: 0; margin-bottom: 16px;">Hello user ${userName} !</p>
+																	<p style="margin: 0; margin-bottom: 16px;">Hello user ${userName}!</p>
 																	<p style="margin: 0;">To complete your Re-set Password, please use the following One-Time Password (OTP) to verify your email address:</p>
 																</div>
 															</td>
@@ -307,8 +307,8 @@ const forgetPasswordOtp = async (req, res) => {
   if (!user) {
     return res.status(404).json({ error: "Email not found" });
   }
-
-  const userName = User.Username
+ 
+  const userName = user.Username;
 
   const otp = Math.floor(100000 + Math.random() * 900000); // Generate 6-digit OTP
   otps[email] = { otp, expires: Date.now() + 300000 }; // OTP expires in 5 mins
