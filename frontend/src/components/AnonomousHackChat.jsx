@@ -27,18 +27,24 @@ function AnonomousHackChat() {
           <div className='pt-20 ml-20 max-sm:ml-0 max-sm:pt-2'>
             <h1 className='text-2xl text-green-300 max-sm:text-[10px]'>Instruction :</h1>
             <div>
-              <ol
-                className="list-disc pl-5 text-xl max-sm:text-[9px]"
-                style={{ listStyleType: "decimal", color: "yellow" }}
-              >
-                <li>Anonymous! Hack Chat doesn't store any message.</li>
-                <li>Click! On Start Chat Button, Wait for Some Seconds..</li>
-                <li>After that Enter Your Anonymous Name & click on infiltrate Button.</li>
-                <li>Your Chat Environment is Ready!</li>
-                <li>You See Two Button one is Create Channel & Second is Enter Room ID.</li>
-                <li>If you have any Room ID shared by your friends, enter it to join the chat room, or create your own room and share the Room ID with your friends.</li>
-                <li>Enjoy chat!!</li>
-              </ol>
+            <ol
+  className="list-disc pl-5 text-xl max-sm:text-[9px]"
+  style={{ listStyleType: "decimal", color: "yellow" }}
+>
+  <li>Your conversations are completely private—Anonymous Hack Chat does not store any messages.</li>
+  <li>Click the "Start Chat" button to begin. Please wait a few seconds for the chat environment to load.</li>
+  <li>Once loaded, enter your anonymous name and click the "Infiltrate" button to proceed.</li>
+  <li>Welcome to your chat environment! You're now ready to connect and chat anonymously.</li>
+  <li>You will see two options:
+    <ul className="pl-5" style={{ listStyleType: "circle" }}>
+      <li>"Create Channel" - Start a new chat room and generate a unique Room ID.</li>
+      <li>"Enter Room ID" - Join an existing room using a Room ID shared by your friends.</li>
+    </ul>
+  </li>
+  <li>If you create a channel, share the generated Room ID with your friends to let them join your chat room.</li>
+  <li>Enjoy secure, real-time chatting with your friends or anyone else anonymously!</li>
+</ol>
+
             </div>
           </div>
 
