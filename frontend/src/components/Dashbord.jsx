@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { User, Users, Settings, Shield, Send, X, Trash } from "lucide-react";
+import { User, Users, Settings, Skull, Send, X, Trash } from "lucide-react";
 import { io } from "socket.io-client";
 import { useNavigate } from "react-router-dom";
 import UserSearch from "./UserSearch";
@@ -7,6 +7,7 @@ import ChatHeader from "./ChatHeader";
 import Profile from "./Profile";
 import Contect from "./Contect";
 import Setting from "./Setting";
+import HackChat from "./AnonomousHackChat"
 
 import axios from "axios";
 
@@ -19,6 +20,7 @@ export default function Component() {
   const [isProfileOpen, setIsProfileOpen] = useState(false); //profile component
   const [isContectOpen, setIsContectOpen] = useState(false); //contect component
   const [isSettingOpen, setIsSettingOpen] = useState(false); //setting component
+  const [isHackChatOpen, setIsHackChatOpen] = useState(false); // hack chat
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
   const chatContainerRef = useRef(null);
@@ -273,6 +275,17 @@ export default function Component() {
       setIsSettingOpen(true);
     }
   };
+  const toggleHackChat = () => {
+    if (isHackChatOpen) {
+      setIsAnimating(true); // Trigger the closing animation
+      setTimeout(() => {
+        setIsHackChatOpen(false); // Close the popup after animation completes
+        setIsAnimating(false); // Reset animation state
+      }, 300); // Duration of the animation (in ms)
+    } else {
+      setIsHackChatOpen(true);
+    }
+  };
 
   return (
     <div className="flex h-screen bg-gray-200 text-gray-800 overflow-hidden">
@@ -318,8 +331,10 @@ export default function Component() {
           >
             <Settings className="h-5 w-5" />
           </button>
-          <button className="text-[#6b4ad4] hover:text-gray-800 focus:outline-none">
-            <Shield className="h-5 w-5" />
+          <button 
+          onClick={toggleHackChat}
+          className="text-[red] hover:text-yellow-300 focus:outline-none bg-black rounded-full ">
+            <Skull className="h-7 w-7" />
           </button>
         </div>
       </div>
@@ -377,6 +392,24 @@ export default function Component() {
               <X className="h-5 w-5" />
             </button>
             <Setting /> {/* Render the Setting component */}
+          </div>
+        </div>
+      )}
+      {/* Hack chat */}
+      {isHackChatOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-100 z-50 flex">
+          <div
+            className={`p-6 rounded-lg w-[100%] h-[100%] shadow-lg relative ml-8 mt-8 mr-8 max-sm:ml-0 max-sm:mr-0  bg-black text-white ${
+              isAnimating ? "slide-down" : "slide-up"
+            }`}
+          >
+            <button
+              className="absolute top-2 right-2 text-gray-400 hover:text-gray-200"
+              onClick={toggleHackChat}
+            >
+              <X className="h-5 w-5" />
+            </button>
+            <HackChat />
           </div>
         </div>
       )}
