@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { User, Users, Settings, Skull, Send, X, Trash } from "lucide-react";
+import { User, Users, Settings, Skull, Send, X, Trash, Minimize } from "lucide-react";
 import { io } from "socket.io-client";
 import { useNavigate } from "react-router-dom";
 import UserSearch from "./UserSearch";
@@ -7,7 +7,7 @@ import ChatHeader from "./ChatHeader";
 import Profile from "./Profile";
 import Contect from "./Contect";
 import Setting from "./Setting";
-import HackChat from "./AnonomousHackChat"
+import HackChat from "./AnonomousHackChat";
 
 import axios from "axios";
 
@@ -331,10 +331,15 @@ export default function Component() {
           >
             <Settings className="h-5 w-5" />
           </button>
-          <button 
-          onClick={toggleHackChat}
-          className="text-[red] hover:text-yellow-300 focus:outline-none bg-black rounded-full ">
-            <Skull className="h-7 w-7" />
+          <button
+            onClick={toggleHackChat}
+            className="text-[red] hover:text-yellow-300 focus:outline-none bg-black rounded-full "
+          >
+            {isHackChatOpen ? (
+              <Skull className="h-7 w-7" />
+            ) : (
+              <Skull className="h-7 w-7" />
+            )}
           </button>
         </div>
       </div>
@@ -396,23 +401,28 @@ export default function Component() {
         </div>
       )}
       {/* Hack chat */}
-      {isHackChatOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-100 z-50 flex">
-          <div
-            className={`p-6 rounded-lg w-[100%] h-[100%] shadow-lg relative ml-8 mt-8 mr-8 max-sm:ml-0 max-sm:mr-0  bg-black text-white ${
-              isAnimating ? "slide-down" : "slide-up"
-            }`}
+      <div
+        className={`fixed inset-0 bg-black bg-opacity-70 z-50 flex justify-center items-center ${
+          isHackChatOpen ? "visible" : "hidden"
+        }`}
+      >
+        <div
+          className={`p-6 rounded-lg w-[95%] h-[95%] shadow-lg relative bg-black text-white transform ${
+            isAnimating ? "slide-down" : "slide-up"
+          } transition-all duration-300`}
+        >
+          <button
+            className="absolute top-2 right-2 flex justify-between gap-5 text-gray-400 hover:text-gray-200"
+            onClick={toggleHackChat}
           >
-            <button
-              className="absolute top-2 right-2 text-gray-400 hover:text-gray-200"
-              onClick={toggleHackChat}
-            >
-              <X className="h-5 w-5" />
-            </button>
-            <HackChat />
-          </div>
+            <Minimize />
+            <X />
+          </button>
+
+          {/* Render HackChat but keep its state */}
+          <HackChat />
         </div>
-      )}
+      </div>
 
       {/* Main content */}
       <div className="flex-1 flex flex-col rounded-xl">
@@ -467,7 +477,11 @@ export default function Component() {
                   msg.senderId === currentUserId && (
                     <div
                       className="relative top-0 right-0 bg-red-600 p-2 shadow-lg rounded-full"
-                      style={{ marginTop: "5px", marginRight: "5px", marginLeft: '5px' }} // Adjust position as needed
+                      style={{
+                        marginTop: "5px",
+                        marginRight: "5px",
+                        marginLeft: "5px",
+                      }} // Adjust position as needed
                     >
                       <button
                         onClick={(e) => {
