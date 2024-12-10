@@ -6,7 +6,7 @@ const User = require("../models/user");
 let otps = {};
 
 
-// HTML email template
+// HTML email templat
 function getHtmlContent(otp, userName) {
   return `
 <!DOCTYPE html>
