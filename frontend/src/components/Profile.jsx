@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { ThemeContext } from "../context/ThemeContext";
 
 export default function Profile() {
   const [username, setUsername] = useState("");
@@ -12,6 +13,7 @@ export default function Profile() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true); // Add loading state
   const [error, setError] = useState(null);
+   const { isDarkMode } = React.useContext(ThemeContext);
 
   const handleImageUpload = async (event) => {
     const file = event.target.files[0];
@@ -170,8 +172,8 @@ export default function Profile() {
 
   return (
     <div className="text-black  h-[100%] overflow-y-scroll scrollbar-hide  ">
-      <h2 className="text-xl font-bold text-center">Welcome, {username}!</h2>
-      <div className="max-w-md mx-auto bg-gray-200 rounded-lg  p-4 text-black">
+      <h2 className={`${isDarkMode ? 'text-white' :  'text-gray-800'} text-xl font-bold text-center`}>Welcome, {username}!</h2>
+      <div className={`${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-800'} max-w-md mx-auto bg-gray-200 rounded-lg  p-4 text-black`}>
         <div className="relative">
           <div className="w-24 h-24 mx-auto relative group">
             <img

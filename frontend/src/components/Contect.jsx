@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { UserPlus, Users } from "lucide-react";
+import { ThemeContext } from "../context/ThemeContext";
 
 export default function UserConnections({ currentUserId }) {
   const [addedUsers, setAddedUsers] = useState([]);
@@ -9,6 +10,7 @@ export default function UserConnections({ currentUserId }) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState("added");
+   const { isDarkMode } = React.useContext(ThemeContext);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -105,7 +107,7 @@ export default function UserConnections({ currentUserId }) {
             </div>
           </div>
         </div>
-    <div className="w-full max-w-md bg-gray-300 shadow-md rounded-lg overflow-y-scroll scrollbar-hide h-[70%] max-sm:h-[65%] ">
+    <div className={`${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-800'} w-full max-w-md bg-gray-300 shadow-md rounded-lg overflow-y-scroll scrollbar-hide h-[70%] max-sm:h-[65%] `}>
       <div className="p-6">
 
         {error && (
