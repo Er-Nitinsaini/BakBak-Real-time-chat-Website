@@ -197,7 +197,7 @@ export default function Profile() {
           </div>
           <div className="mt-4">
             <div className="flex justify-between items-center">
-              <label className="text-black">Name :</label>
+              <label className={`${isDarkMode ?  'text-white' : ' text-gray-800'}`}>Name :</label>
               <button
                 onClick={() =>
                   setIsEditing({ ...isEditing, name: !isEditing.name })
@@ -224,7 +224,7 @@ export default function Profile() {
         <div className="mt-3 space-y-6">
           <div className="space-y-2">
             <div className="flex justify-between items-center">
-              <label className="text-black">About :</label>
+              <label className={`${isDarkMode ?  'text-white' : ' text-gray-800'}`}>About :</label>
               <button
                 onClick={() =>
                   setIsEditing({ ...isEditing, about: !isEditing.about })
@@ -249,7 +249,7 @@ export default function Profile() {
 
           <div className="">
             <div className="flex justify-between items-center">
-              <label className="text-black">Phone Number :</label>
+              <label className={`${isDarkMode ?  'text-white' : ' text-gray-800'}`}>Phone Number :</label>
               <button
                 onClick={() =>
                   setIsEditing({ ...isEditing, phone: !isEditing.phone })
