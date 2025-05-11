@@ -216,7 +216,7 @@ export default function Profile() {
                 className="w-full bg-gray-300 rounded p-2 text-black font-extrabold"
               />
             ) : (
-              <p className="text-black font-extrabold">{name}</p>
+              <p className={`${isDarkMode ?  'text-white' : ' text-gray-800'} font-extrabold`}>{name}</p>
             )}
           </div>
         </div>
@@ -243,7 +243,7 @@ export default function Profile() {
                 placeholder="Bio"
               />
             ) : (
-              <p className="text-black font-semibold">{about}</p>
+              <p className={`${isDarkMode ?  'text-white' : ' text-gray-800'} font-semibold`}>{about}</p>
             )}
           </div>
 
@@ -269,7 +269,7 @@ export default function Profile() {
                 placeholder=""
               />
             ) : (
-              <p className="text-black font-extrabold">+91 {phoneNumber}</p>
+              <p className={`${isDarkMode ?  'text-white' : ' text-gray-800'} font-semibold`}>+91 {phoneNumber}</p>
             )}
           </div>
         </div>
