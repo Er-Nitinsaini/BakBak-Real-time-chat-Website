@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Phone, Video, MoreHorizontal, Menu, X } from "lucide-react";
 import io from "socket.io-client";
+import { ThemeContext } from "../context/ThemeContext";
 
 const socket = io("https://bakbak.onrender.com");
 
@@ -11,6 +12,8 @@ export default function ChatHeader({ selectedUser, toggleSidebar, token }) {
   const [onlineUsers, setOnlineUsers] = useState({});
   const [profileImage, setProfileImage] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+    const { isDarkMode } = React.useContext(ThemeContext);
+
 
   const fetchUserDataa = async () => {
     const userId = getUserIdFromToken(token);
@@ -134,7 +137,7 @@ export default function ChatHeader({ selectedUser, toggleSidebar, token }) {
   };
 
   return (
-    <div className="bg-gray-200 p-4 flex items-center justify-between">
+    <div className={`${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-800'} bg-gray-200 p-4 flex items-center justify-between`}>
       <div className="flex items-center space-x-3">
         <button
           className="md:hidden text-[#6b4ad4] hover:text-gray-800 focus:outline-none"
