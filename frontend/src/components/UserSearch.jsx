@@ -205,7 +205,7 @@ export default function UserSearch({ onUserSelect, currentUserId }) {
           addedUsers.map((user) => (
             <div
               key={user._id}
-              className="flex items-center justify-between p-2 bg-gray-100 rounded-full mt-2 cursor-pointer hover:bg-gray-300 hover:font-bold"
+              className={`${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-800'} flex items-center justify-between p-2 bg-gray-100 rounded-full mt-2 cursor-pointer hover:bg-gray-300 hover:font-bold`}
               onClick={() => handleUserSelect(user)}
               //onClick={() => onUserSelect(user)}
             >

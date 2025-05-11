@@ -162,7 +162,7 @@ export default function ChatHeader({ selectedUser, toggleSidebar, token }) {
           )}
         </div>
         <div>
-          <h2 className="font-semibold text-gray-800 " >
+          <h2 className={`${isDarkMode ? 'text-white' : 'text-gray-800'} font-semibold`}>
             {selectedUser
               ? selectedUser.Username
               : `Welcome, ${username}. (you)`}
