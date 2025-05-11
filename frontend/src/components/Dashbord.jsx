@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { User, Users, Settings, Skull, Send, X, Trash, Minimize } from "lucide-react";
 import { io } from "socket.io-client";
 import { useNavigate } from "react-router-dom";
@@ -8,10 +8,14 @@ import Profile from "./Profile";
 import Contect from "./Contect";
 import Setting from "./Setting";
 import HackChat from "./AnonomousHackChat";
+import { ThemeContext } from "../context/ThemeContext";
 
 import axios from "axios";
 
 const socket = io("https://bakbak.onrender.com");
+
+// export default function Component() {
+// }
 
 export default function Component() {
   const [message, setMessage] = useState("");
@@ -30,7 +34,8 @@ export default function Component() {
   const [isAnimating, setIsAnimating] = useState(false); //animation
   const [token, settoken] = useState();
   const navigate = useNavigate();
-
+  const { isDarkMode } = useContext(ThemeContext);
+  
   useEffect(() => {
     const token = localStorage.getItem("token");
     settoken(token);
@@ -288,16 +293,15 @@ export default function Component() {
   };
 
   return (
-    <div className="flex h-screen bg-gray-200 text-gray-800 overflow-hidden">
-      {/* Sidebar */}
+<div className={`flex h-screen overflow-hidden ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-800'}`}>      {/* Sidebar */}
       <div
         className={`${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } transform transition-transform duration-300 ease-in-out fixed inset-y-0 left-0 z-30 w-64 bg-gray-200 flex flex-col md:relative md:translate-x-0`}
       >
-        <div className="p-4 bg-gray-200">
+        <div className={`${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-800'} p-4 bg-gray-200 `}>
           <img src="bk.png" alt="logo" className="h-14 " />
-          <h1 className="text-xl font-bold text-gray-800">Chats</h1>
+          <h1 className="text-xl font-bold text-black">Chats</h1>
           <button
             className="md:hidden absolute top-4 right-4 text-gray-600 hover:text-gray-800 focus:outline-none"
             onClick={toggleSidebar}
@@ -305,14 +309,14 @@ export default function Component() {
             <X className="h-6 w-6" />
           </button>
         </div>
-        <div className="flex-grow overflow-y-scroll no-scrollbar">
+        <div className={`${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-800'} flex-grow overflow-y-scroll no-scrollbar`}>
           <UserSearch
             onAddUser={addUserToChat}
             onUserSelect={handleUserSelect}
             currentUserId={currentUserId}
           />
         </div>
-        <div className="p-4 bg-gray-200 flex justify-between">
+        <div className={`${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-800'} p-4 bg-gray-200 flex justify-between`}>
           <button
             onClick={toggleProfile}
             className="text-[#6b4ad4] hover:text-black font-extrabold"
@@ -349,7 +353,9 @@ export default function Component() {
           <div
             className={`bg-gray-200 p-6 rounded-lg w-96 h-[70%] shadow-lg relative ml-9 mt-40 max-sm:ml-0  text-black ${
               isAnimating ? "slide-down" : "slide-up"
-            }`}
+            }
+            ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-800'}
+            `}
           >
             <button
               className="absolute top-2 right-2 text-gray-400 hover:text-gray-200"
@@ -368,7 +374,9 @@ export default function Component() {
           <div
             className={`bg-gray-200 p-6 rounded-lg w-96 h-[70%] shadow-lg relative ml-12 mt-40 max-sm:ml-0  text-black ${
               isAnimating ? "slide-down" : "slide-up"
-            }`}
+            }
+            ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-800'}
+            `}
           >
             <button
               className="absolute top-2 right-2 text-gray-400 hover:text-gray-200"
@@ -388,7 +396,9 @@ export default function Component() {
           <div
             className={`bg-gray-200 p-6 rounded-lg w-96 h-[70%] shadow-lg relative ml-8 mt-40 max-sm:ml-0   text-black ${
               isAnimating ? "slide-down" : "slide-up"
-            }`}
+            }
+            ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-800'}
+            `}
           >
             <button
               className="absolute top-2 right-2 text-gray-400 hover:text-gray-200"
@@ -425,7 +435,7 @@ export default function Component() {
       </div>
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col rounded-xl">
+      <div className={`${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-800'} flex-1 flex flex-col rounded-xl`}>
         <ChatHeader
           toggleSidebar={toggleSidebar}
           selectedUser={selectedUser}
@@ -435,7 +445,7 @@ export default function Component() {
         {/* Chat area */}
         <div
           ref={chatContainerRef}
-          className="flex-1 bg-gray-300 p-4 overflow-y-scroll no-scrollbar rounded-xl"
+          className={`${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-800'} flex-1 bg-gray-300 p-4 overflow-y-scroll no-scrollbar rounded-xl`}
         >
           {selectedUser &&
             (messages[selectedUser._id] || []).map((msg, index) => (
@@ -500,12 +510,12 @@ export default function Component() {
         </div>
 
         {/* Message input */}
-        <div className="bg-gray-200 p-4">
+        <div className={`${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-800'}  p-4`}>
           <div className="flex items-center space-x-2">
             <input
               type="text"
               placeholder="Type a message"
-              className="flex-1 bg-white border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className={`${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-800'} flex-1  border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500`}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}

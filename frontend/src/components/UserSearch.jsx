@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Search, Trash, Plus } from "lucide-react";
 import io from "socket.io-client";
 import { useNavigate } from "react-router-dom";
+import { ThemeContext } from "../context/ThemeContext";
 
 
 const socket = io("https://bakbak.onrender.com");
@@ -11,6 +12,7 @@ export default function UserSearch({ onUserSelect, currentUserId }) {
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [addedUsers, setAddedUsers] = useState([]);
   const navigate = useNavigate();
+  const { isDarkMode } = React.useContext(ThemeContext);
 
   
   useEffect(() => {
@@ -161,13 +163,13 @@ export default function UserSearch({ onUserSelect, currentUserId }) {
   
 
   return (
-    <div className="p-4 bg-gray-200">
-      <div className="relative mb-4">
+    <div className={`${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-800'} p-4 bg-gray-200`}>
+      <div className={`${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-800'} relative mb-4`}>
         <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-500" />
         <input
           type="text"
           placeholder="Search Users"
-          className="w-full pl-8 pr-2 py-2 bg-white border border-gray-300 rounded-md text-sm focus:outline-none"
+          className={`${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-800'} w-full pl-8 pr-2 py-2  border border-gray-300 rounded-md text-sm focus:outline-none`}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
