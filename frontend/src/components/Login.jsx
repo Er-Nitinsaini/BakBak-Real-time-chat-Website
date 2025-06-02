@@ -114,7 +114,7 @@ export default function Login() {
       <div className="flex absolute bottom-0 bg-purple-500 w-full justify-center text-white"
       >
         <p className="text-[14px] mt-2 mb-2 ">
-          Devloped by  Nitin Saini with ❤️ ©️ BakBak 2024
+          Devloped by  Nitin Saini with ❤️ ©️ BakBak 2025
         </p>
       </div>
     </div>
