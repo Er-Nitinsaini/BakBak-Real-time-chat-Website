@@ -38,7 +38,7 @@ const ChatSettings = () => {
         </div>
       </div>
 
-      {/* Dark Mode */}
+      
       <div className="mb-6">
         <h3 className="text-lg font-semibold mb-2">Light & Dark Mode</h3>
         <div className="flex items-center justify-between">
