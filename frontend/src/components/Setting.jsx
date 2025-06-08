@@ -18,7 +18,7 @@ const ChatSettings = () => {
     <div className={`max-w-2xl mx-auto p-6 rounded-xl shadow-lg overflow-y-scroll scrollbar-hide h-[100%] ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
       <h2 className="text-2xl font-bold mb-6">Chat Settings</h2>
 
-      {/* Notifications */}
+      
       <div className="mb-6">
         <h3 className="text-lg font-semibold mb-2">Notifications</h3>
         <div className="flex items-center justify-between">
